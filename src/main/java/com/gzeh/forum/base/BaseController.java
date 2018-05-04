@@ -224,7 +224,7 @@ public abstract class BaseController {
 		 */
 	public boolean updateLevel(Integer level){
 		Account selectById = this.iAccountService.selectById(getUserId());
-		selectById.setLevel(selectById.getLevel()+level);
+		selectById.setLevel(selectById.getLevel()==null?5:selectById.getLevel()+level);
 	    return this.iAccountService.insertOrUpdate(selectById);
 	}
 		
