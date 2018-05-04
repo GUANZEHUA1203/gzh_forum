@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gzeh.forum.dao.AticleMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.gzeh.forum.bean.Aticle">
+		<id column="at_id" property="atId" />
+		<result column="at_title" property="atTitle" />
+		<result column="acount_id" property="acountId" />
+		<result column="at_content" property="atContent" />
+		<result column="at_data" property="atData" />
+		<result column="block_id" property="blockId" />
+	</resultMap>
+	
+	<select id="pageInfoAticle" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+			ta.*, re.replysum,
+			tac.ac_login_name,
+			re.maxdata
+		FROM
+			tbl_aticle ta
+		LEFT JOIN tbl_account tac ON ta.acount_id = tac.ac_id
+		LEFT JOIN (
+			SELECT
+				count(re_id) replysum,
+				max(re_data) maxdata,
+				at_id
+			FROM
+				tbl_reply tr
+			GROUP BY
+				at_id
+		) re ON ta.at_id = re.at_id 
+		<where>
+				ta.block_id=#{blockid}
+		</where>
+	</select>
+
+</mapper>

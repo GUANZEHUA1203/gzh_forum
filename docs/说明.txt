@@ -1,0 +1,2 @@
+update user set authentication_string=password('xxxxx.') where user='root';
+flush privileges;
