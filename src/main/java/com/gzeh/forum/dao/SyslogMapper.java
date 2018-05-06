@@ -1,7 +1,12 @@
 package com.gzeh.forum.dao;
 
 import com.gzeh.forum.bean.Syslog;
+
+import java.util.List;
+import java.util.Map;
+
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baomidou.mybatisplus.plugins.Page;
 
 /**
  * <p>
@@ -12,5 +17,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * @since 2018-04-21
  */
 public interface SyslogMapper extends BaseMapper<Syslog> {
+	
+	List<Map<String, Object>> selectSyslogByPage(Page<Map<String, Object>> page,Map<String, Object> param);
 
 }

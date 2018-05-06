@@ -153,7 +153,7 @@ public class PermissonServiceImpl extends ServiceImpl<PermissonMapper, Permisson
                tree.setAttributes(resource.getPeUrl());
                tree.setOpenMode(resource.getPeOpenMode());
                tree.setState(resource.getPeOpened());
-            trees.add(tree);
+               trees.add(tree);
         }
         return trees;
 	}

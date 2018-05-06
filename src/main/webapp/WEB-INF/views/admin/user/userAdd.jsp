@@ -3,7 +3,7 @@
 <script type="text/javascript">
     $(function() {
 
-        $('#userAddRoleIds').combotree({
+        $('#userAddBlocks').combotree({
             url: '${path }/role/list',
             multiple: true,
             required: true,
@@ -58,7 +58,7 @@
                 </tr>
                 <tr>
                     <td>角色</td>
-                    <td><select id="userAddRoleIds" name="roles" style="width: 140px; height: 29px;"></select></td>
+                    <td><select id="userAddBlocks" name="roles" style="width: 140px; height: 29px;"></select></td>
                 </tr>
                <!--  <tr>
                     <td>电话</td>

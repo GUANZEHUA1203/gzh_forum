@@ -10,7 +10,9 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.gzeh.forum.bean.Aticle;
+import com.gzeh.forum.common.result.PageInfo;
 import com.gzeh.forum.dao.AticleMapper;
+import com.gzeh.forum.dao.LevelMapper;
 import com.gzeh.forum.services.IAticleService;
 import com.gzeh.forum.util.BeanUtils;
 import com.gzeh.forum.util.StringUtil;
@@ -28,22 +30,24 @@ public class AticleServiceImpl extends ServiceImpl<AticleMapper, Aticle> impleme
 	
 	@Autowired
 	AticleMapper am;
+	@Autowired
+	LevelMapper lm;
 
 	@Override
-	public Page<Map<String, Object>> pageInfoList(Page<Map<String, Object>>  pageInfo,Map<String, Object> param) {
-		
-		Page<Map<String, Object>> pagetmp = BeanUtils.copy(param, Page.class);//原分页信息
-		
-	    List<Map<String, Object>> pageInfoAticle = this.am.pageInfoAticle(pageInfo,param);
-	    
-	    Aticle aticle = new Aticle();
-	    aticle.setBlockId(StringUtil.getLong(param.get("blockid")));
-	    EntityWrapper<Aticle> ew=new EntityWrapper<Aticle>(aticle);
-	    Integer selectCount = am.selectCount(ew);
-	    
-	    pagetmp.setRecords(pageInfoAticle);
-	    pagetmp.setTotal(selectCount);
-	    return pagetmp;
+	public PageInfo pageInfoList(PageInfo  pageinfo) {
+		Page<Map<String, Object>> page = new Page<Map<String, Object>>(pageinfo.getNowpage(), pageinfo.getSize());
+        page.setOrderByField(pageinfo.getSort());
+        page.setAsc(pageinfo.getOrder().equalsIgnoreCase("asc"));
+        List<Map<String, Object>> list = am.pageInfoAticle(page, pageinfo.getCondition());
+        //获取等级信息
+        for (Map<String, Object> map : list) {
+			if(map.containsKey("level")){
+				map.put("levelInfo", lm.getLevelByAccountId(StringUtil.getLong(map.get("level"))));
+			}
+		}
+        pageinfo.setRows(list);
+        pageinfo.setTotal(page.getTotal());
+		return pageinfo;
 	}
 	
 }
