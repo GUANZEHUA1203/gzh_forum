@@ -129,7 +129,7 @@
             title : '添加',
             width : 500,
             height : 350,
-            href : '${path }/block/addPage',
+            href : '${path }/block/addpage',
             buttons : [ {
                 text : '添加',
                 handler : function() {

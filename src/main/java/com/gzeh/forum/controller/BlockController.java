@@ -63,6 +63,15 @@ public class BlockController extends BaseController {
 		boolean updateById = this.iBlockService.updateById(block);
 		return renderSuccess();
 	}
+	
+
+	@RequestMapping("/delete")
+	@ResponseBody
+	public Object delete(Long blockid){
+		this.iBlockService.deleteById(blockid);
+		return renderSuccess();
+	}
+	
 	@GetMapping("/manager")
 	public Object getManager() {
 		return "/admin/block/block";
