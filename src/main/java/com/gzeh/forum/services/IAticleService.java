@@ -5,6 +5,7 @@ import java.util.Map;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.IService;
 import com.gzeh.forum.bean.Aticle;
+import com.gzeh.forum.common.result.PageInfo;
 
 /**
  * <p>
@@ -21,6 +22,6 @@ public interface IAticleService extends IService<Aticle> {
 	 * 列表信息
 	 * @return
 	 */
-	public Page<Map<String, Object>> pageInfoList(Page<Map<String, Object>>  pageInfo,Map<String, Object> param);
+	public PageInfo pageInfoList(PageInfo  pageinfo);
 	
 }

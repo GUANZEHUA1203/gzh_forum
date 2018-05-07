@@ -14,9 +14,17 @@
 	
 	<select id="pageInfoAticle" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT
-			ta.*, re.replysum,
+			CONCAT(ta.at_id,'') at_id,
+			ta.at_title,
+			ta.acount_id,
+			ta.at_content,
+			ta.at_data,
+			ta.block_id,
+			 re.replysum,
 			tac.ac_login_name,
-			re.maxdata
+			re.maxdata lasttime,
+			tb.bl_name blockname,
+			tac.ac_level level
 		FROM
 			tbl_aticle ta
 		LEFT JOIN tbl_account tac ON ta.acount_id = tac.ac_id
@@ -30,9 +38,25 @@
 			GROUP BY
 				at_id
 		) re ON ta.at_id = re.at_id 
+		left join tbl_block tb on  tb.bl_id=ta.block_id
 		<where>
-				ta.block_id=#{blockid}
+			<if test="blockid !=null">
+			and ta.block_id=#{blockid}
+			</if>
+		 	 <if test="startTime !=null">
+			 and ta.at_data &gt;= #{startTime}
+			</if>
+			<if test="endTime !=null">
+			and ta.at_data &lt;= #{endTime}
+			</if>
+			<if test="acids !=null">
+			and ta.acount_id in
+				<foreach collection="acids" item="item" separator="," open="(" close=")">
+					#{item}
+				</foreach>
+			</if> 
 		</where>
+		group by ta.at_id
 	</select>
 
 </mapper>

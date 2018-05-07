@@ -18,4 +18,5 @@ import com.gzeh.forum.services.ILevelService;
 @Service
 public class LevelServiceImpl extends ServiceImpl<LevelMapper, Level> implements ILevelService {
 	
+	
 }

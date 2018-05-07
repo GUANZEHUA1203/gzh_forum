@@ -13,7 +13,7 @@
 	</resultMap>
 
 	<select id="getLevelByAccountId" parameterType="java.lang.Long" resultMap="BaseResultMap">
-		select * from tbl_level where le_end &lt;=#{0}  order by CAST('le_start' AS SIGNED) ASC limit 0,1 
+		select * from tbl_level where #{0} between le_start and le_end;
 	</select>
 	
 </mapper>

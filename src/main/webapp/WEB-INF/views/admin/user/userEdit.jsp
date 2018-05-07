@@ -64,27 +64,11 @@
                 <tr>
                     <td>电子邮箱</td>
                     <td><input type="text" name="acMail" value="${user.acMail}" class="easyui-validatebox"/></td>
-                   <!--  <td>用户类型</td>
-                    <td><select id="userEditUserType" name="userType" class="easyui-combobox" data-options="width:140,height:29,editable:false,panelHeight:'auto'">
-                            <option value="0">管理员</option>
-                            <option value="1">用户</option>
-                    </select></td> -->
                 </tr>
                 <tr>
                     <td>角色</td>
                     <td><input  id="userEditRoleIds" name="roles" style="width: 140px; height: 29px;"/></td>
                 </tr>
-               <%--  <tr>
-                    <td>电话</td>
-                    <td>
-                        <input type="text" name="phone" class="easyui-numberbox" value="${user.phone}"/>
-                    </td>
-                    <td>用户类型</td>
-                    <td><select id="userEditStatus" name="status" value="${user.status}" class="easyui-combobox" data-options="width:140,height:29,editable:false,panelHeight:'auto'">
-                            <option value="0">正常</option>
-                            <option value="1">停用</option>
-                    </select></td>
-                </tr> --%>
             </table>
         </form>
     </div>

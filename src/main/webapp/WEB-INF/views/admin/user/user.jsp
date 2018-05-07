@@ -9,6 +9,7 @@
         userDataGrid = $('#userDataGrid').datagrid({
             url : '${path }/account/list',
             fit : true,
+            fitColumns : false,
             striped : true,
             rownumbers : true,
             pagination : true,
@@ -19,7 +20,7 @@
             pageSize : 20,
             pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
             columns : [ [ {
-                width : '300',
+                width : '100',
                 title : 'ID',
                 field : 'acid',
                 sortable : true
@@ -52,7 +53,7 @@
                     }
                 }
             }, {
-                width : '240',
+                width : '150',
                 title : 'Email',
                 field : 'mail',
                 sortable : true
@@ -63,7 +64,7 @@
                 sortable : true
             }, 
             {
-                width : '200',
+                width : '100',
                 title : '角色',
                 field : 'roleNames'
             },

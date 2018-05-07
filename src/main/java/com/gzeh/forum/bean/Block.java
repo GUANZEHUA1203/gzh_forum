@@ -31,7 +31,7 @@ public class Block extends Model<Block> {
 	@TableField("bl_name")
 	private String blName;
 	@TableField("bl_parent")
-	private Integer blParent;
+	private Long blParent;
     /**
      * 是否删除 0：未删除 1：已删除
      */
@@ -79,11 +79,11 @@ public class Block extends Model<Block> {
 		this.blName = blName;
 	}
 
-	public Integer getBlParent() {
+	public Long getBlParent() {
 		return blParent;
 	}
 
-	public void setBlParent(Integer blParent) {
+	public void setBlParent(Long blParent) {
 		this.blParent = blParent;
 	}
 

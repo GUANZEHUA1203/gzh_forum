@@ -11,5 +11,5 @@ import com.gzeh.forum.bean.Block;
  * @since 2018-04-21
  */
 public interface BlockMapper extends BaseMapper<Block> {
-
+	
 }

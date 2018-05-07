@@ -79,6 +79,7 @@ public class SysLogAspect {
                     sysLog.setAccountId(id);
                     sysLog.setContent(strMessage);
                     sysLog.setCreateTime(new Date());
+                    sysLog.setOption(shiroUser.getRoles().toString());
                     if (request != null) {
                         sysLog.setClientIp(request.getRemoteAddr());
                     }
