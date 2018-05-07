@@ -1,16 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/commons/global.jsp" %>
 <script type="text/javascript">
-    var resourceTreeGrid;
+    var permissonTreeGrid;
     $(function() {
-        resourceTreeGrid = $('#resourceTreeGrid').treegrid({
+    	permissonTreeGrid = $('#permissonTreeGrid').treegrid({
             url : '${path }/permisson/treeGrid',
             idField : 'peId',
             treeField : 'peName',
-            parentField : 'peParent',
-            fit : true,
-            fitColumns : false,
-            border : false,
+            parentField :'peParent', 
             frozenColumns : [ [ {
                 title : '编号',
                 field : 'peId',
@@ -20,7 +17,8 @@
                 field : 'peName',
                 title : '资源名称',
                 width : 150
-            }, {
+            },
+            {
                 field : 'peUrl',
                 title : '资源路径',
                 width : 200
@@ -99,12 +97,11 @@
             toolbar : '#resourceToolbar'
         });
     });
-
     function editResourceFun(id) {
         if (id != undefined) {
-            resourceTreeGrid.treegrid('select', id);
+        	permissonTreeGrid.treegrid('select', id);
         }
-        var node = resourceTreeGrid.treegrid('getSelected');
+        var node = permissonTreeGrid.treegrid('getSelected');
         if (node) {
             parent.$.modalDialog({
                 title : '编辑',
@@ -125,7 +122,7 @@
 
     function deleteResourceFun(id) {
         if (id != undefined) {
-            resourceTreeGrid.treegrid('select', id);
+        	permissonTreeGrid.treegrid('select', id);
         }
         var node = resourceTreeGrid.treegrid('getSelected');
         console.info(node);
@@ -167,7 +164,7 @@
 </script>
 <div class="easyui-layout" data-options="fit:true,border:false">
     <div data-options="region:'center',border:false"  style="overflow: hidden;">
-        <table id="resourceTreeGrid"></table>
+        <table id="permissonTreeGrid"></table>
     </div>
 </div>
 <div id="resourceToolbar" style="display: none;">
