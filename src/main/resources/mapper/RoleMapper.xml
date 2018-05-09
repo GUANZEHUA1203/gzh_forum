@@ -25,7 +25,7 @@
 				pe_icon peIcon,
 				pe_parent peParent,
 				pe_seq peSeq,
-				pe_status pwStatus,
+				pe_status peStatus,
 				pe_opened peOpened,
 				pe_resource_type peResourceType,
 				pe_create_time peCreateTime

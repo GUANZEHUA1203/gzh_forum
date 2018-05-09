@@ -1,6 +1,10 @@
 package com.gzeh.forum.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -12,10 +16,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.common.collect.Lists;
 import com.gzeh.forum.base.BaseController;
 import com.gzeh.forum.bean.Permisson;
 import com.gzeh.forum.services.IPermissonService;
 import com.gzeh.forum.shiro.ShiroUser;
+import com.gzeh.forum.util.Object2mapUtil;
 
 
 /**
@@ -63,7 +69,23 @@ public class PermissonController extends BaseController {
 	    @PostMapping("/treeGrid")
 	    @ResponseBody
 	    public Object treeGrid() {
-	        return iPermissonService.selectAll();
+	    	ArrayList<Map> newArrayList = Lists.newArrayList();
+	    	
+	    	List<Permisson> selectAll = iPermissonService.selectAll();
+	    	//easyui id标识
+	    	for (Permisson permisson : selectAll) {
+	    		Map<String, Object> objectToMap=new HashMap<>();;
+				try {
+					objectToMap = Object2mapUtil.objectToMap(permisson);
+					Object object = objectToMap.get("peId");
+		    		objectToMap.put("id", object);
+//		    		objectToMap.put("state", "closed");
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+				}
+		    	newArrayList.add(objectToMap);
+			}
+	        return newArrayList;
 	    }
 
 	    /**

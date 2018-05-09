@@ -145,6 +145,7 @@ public class PermissonServiceImpl extends ServiceImpl<PermissonMapper, Permisson
             return trees;
         }
         for (Permisson resource : resourceLists) {
+        	if(resource.getPeStatus()==0&&resource.getPeResourceType()==0) {//状态为0 类型为0
         	   Tree tree = new Tree();
                tree.setId(resource.getPeId());
                tree.setPid(resource.getPeParent());
@@ -154,6 +155,7 @@ public class PermissonServiceImpl extends ServiceImpl<PermissonMapper, Permisson
                tree.setOpenMode(resource.getPeOpenMode());
                tree.setState(resource.getPeOpened());
                trees.add(tree);
+        	}
         }
         return trees;
 	}

@@ -5,9 +5,9 @@
     $(function() {
     	blockTreeGrid = $('#blockTreeGrid').treegrid({
             url : '${path }/block/list',
-            idField : 'blId',
+            idField : 'id',
             treeField : 'blName',
-            /* parentField  : 'blParent', */
+             parentField  : 'blParent', 
             fit : true,
             fitColumns : false,
             border : false,

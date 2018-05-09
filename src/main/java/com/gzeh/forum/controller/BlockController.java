@@ -1,5 +1,9 @@
 package com.gzeh.forum.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,10 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.common.collect.Lists;
 import com.gzeh.forum.base.BaseController;
 import com.gzeh.forum.bean.Block;
 import com.gzeh.forum.services.IBlockService;
 import com.gzeh.forum.util.IdGenerator;
+import com.gzeh.forum.util.Object2mapUtil;
 
 /**
  *
@@ -81,7 +87,21 @@ public class BlockController extends BaseController {
 	@PostMapping(value="/list")
     @ResponseBody
     public Object dataGrid() {
-		return  iBlockService.selectList(null);
+		ArrayList<Object> newArrayList = Lists.newArrayList();
+		List<Block> selectList = iBlockService.selectList(null);
+		for (Block block : selectList) {
+			Map<String, Object> objectToMap;
+			try {
+				objectToMap = Object2mapUtil.objectToMap(block);
+				objectToMap.put("id", objectToMap.get("blId"));
+				newArrayList.add(objectToMap);
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			}
+		
+		}
+		
+		return  newArrayList;
     }
 	
 	@PostMapping(value="/listtree")

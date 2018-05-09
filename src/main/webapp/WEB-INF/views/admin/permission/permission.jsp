@@ -5,9 +5,11 @@
     $(function() {
     	permissonTreeGrid = $('#permissonTreeGrid').treegrid({
             url : '${path }/permisson/treeGrid',
-            idField : 'peId',
+            idField : 'id',
             treeField : 'peName',
-            parentField :'peParent', 
+            parentField :'peParent',
+            height:"auto", 
+            initialState:"collapsed",
             frozenColumns : [ [ {
                 title : '编号',
                 field : 'peId',
