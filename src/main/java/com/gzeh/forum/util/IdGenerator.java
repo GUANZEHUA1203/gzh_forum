@@ -2,8 +2,10 @@ package com.gzeh.forum.util;
 
 import java.util.logging.Level;
 
-public class IdGenerator {
+import org.springframework.context.annotation.Bean;
 
+
+public class IdGenerator {
     private final long workerId;
     private final long epoch = 1403854494756L;
     private final long workerIdBits = 10L;
@@ -35,7 +37,7 @@ public class IdGenerator {
             throw new IllegalArgumentException(String.format("worker Id can't be greater than %d or less than 0", this.maxWorkerId));
         }
     }
-
+    @Bean
     public synchronized long nextId() {
         long timestamp = System.currentTimeMillis();
         if (this.lastTimestamp == timestamp) {
