@@ -47,4 +47,14 @@ public class ReplyController extends BaseController {
     	replyService.insert(r);
     	return renderSuccess();
     }
+
+    @PostMapping("/edit")
+	@ResponseBody
+	public Object update(String recontxt,Long reid){
+		Reply r=new Reply();
+		r.setReContxt(recontxt);
+		r.setReId(reid);
+		boolean b = replyService.updateById(r);
+		return renderSuccess("修改成功");
+	}
 }
