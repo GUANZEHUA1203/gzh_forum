@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
 /**
  * @description：TreeVO
@@ -13,6 +15,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 public class Tree implements java.io.Serializable {
 
     private static final long serialVersionUID = 980682543891282923L;
+    @JsonSerialize(using=ToStringSerializer.class)
     private Long id;
     private String text;
     private String state = "open";// open,closed
@@ -21,6 +24,7 @@ public class Tree implements java.io.Serializable {
     @JsonInclude(Include.NON_NULL)
     private List<Tree> children; // null不输出
     private String iconCls;
+    @JsonSerialize(using=ToStringSerializer.class)
     private Long pid;
     /**
      * ajax,iframe,
