@@ -214,7 +214,7 @@
         </form>
     </div>
     <div data-options="region:'center',border:true,title:'用户列表'" >
-        <table id="userDataGrid" data-options="fit:true,border:false"></table>
+        <table id="userDataGrid" data-options="fit:true,border:false" style="height: 600px;"></table>
     </div>
 </div>
 <div id="userToolbar" style="display: none;">

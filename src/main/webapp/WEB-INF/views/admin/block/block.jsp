@@ -61,6 +61,9 @@
                         <shiro:hasPermission name="/block/update">
                             str += $.formatString('<a href="javascript:void(0)" class="resource-easyui-linkbutton-edit" data-options="plain:true,iconCls:\'glyphicon-pencil icon-blue\'" onclick="editBlockFun(\'{0}\');" >编辑</a>', row.blId);
                         </shiro:hasPermission>
+                        <shiro:hasPermission name="/block/add">
+                        	str += $.formatString('<a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true,iconCls:\'glyphicon-plus icon-green\'" onclick="editBlockFun(\'{0}\');" >添加</a>');
+                    	</shiro:hasPermission>
                         <shiro:hasPermission name="/block/del">
                             str += '&nbsp;&nbsp;|&nbsp;&nbsp;';
                             str += $.formatString('<a href="javascript:void(0)" class="resource-easyui-linkbutton-del" data-options="plain:true,iconCls:\'glyphicon-trash icon-red\'" onclick="deleteBlockFun(\'{0}\');" >删除</a>', row.blId);
@@ -110,7 +113,7 @@
                 if (b) {
                     progressLoad();
                     $.post('${path }/block/delete', {
-                        id : node.id
+                    	blockid : node.blId
                     }, function(result) {
                         if (result.success) {
                             parent.$.messager.alert('提示', result.msg, 'info');
@@ -128,13 +131,13 @@
         parent.$.modalDialog({
             title : '添加',
             width : 500,
-            height : 350,
+            height : 650,
             href : '${path }/block/addpage',
             buttons : [ {
-                text : '添加',
+                text : '添加版块',
                 handler : function() {
-                    parent.$.modalDialog.openner_treeGrid = blockTreeGrid;//因为添加成功之后，需要刷新这个treeGrid，所以先预定义好
-                    var f = parent.$.modalDialog.handler.find('#resourceAddForm');
+                	parent.$.modalDialog.openner_dataGrid = blockTreeGrid;
+                    var f = parent.$.modalDialog.handler.find('#blockAddForm');
                     f.submit();
                 }
             } ]
@@ -149,6 +152,6 @@
 </div>
 <<div id="blockToolbar" style="display: none;">
     <shiro:hasPermission name="/block/add">
-        <a onclick="addBlockFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'glyphicon-plus icon-green'">添加</a>
+        <a onclick="addBlockFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'glyphicon-plus icon-green',Resiable:true">添加</a>
     </shiro:hasPermission>
 </div> 

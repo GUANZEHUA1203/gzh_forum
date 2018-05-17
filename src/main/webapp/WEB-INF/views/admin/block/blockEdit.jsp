@@ -9,21 +9,21 @@
             panelHeight : 'auto',
             multiple : false,/*多项选择  */
             required : true,
-            value:blockparent
+            value: blockparent
         });
         
         $('#blockEditForm').form({
             url : '${path }/block/update',
             onSubmit : function() {
-                progressLoad();
+              /*   progressLoad();
                 var isValid = $(this).form('validate');
                 if (!isValid) {
                     progressClose();
                 }
-                return isValid;
+                return isValid; */
             },
             success : function(result) {
-                progressClose();
+                /* progressClose(); */
                 result = $.parseJSON(result);
                 if (result.success) {
                     parent.$.modalDialog.openner_treeGrid.treegrid('reload');//之所以能在这里调用到parent.$.modalDialog.openner_treeGrid这个对象，是因为resource.jsp页面预定义好了

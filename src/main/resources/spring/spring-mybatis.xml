@@ -58,7 +58,12 @@
     <bean id="globalConfig" class="com.baomidou.mybatisplus.entity.GlobalConfiguration">
         <property name="idType" value="1"/>
         <property name="dbColumnUnderline" value="true"/>
+	    <property name="sqlInjector" ref="logicSqlInjector" />
+	    <property name="logicDeleteValue" value="1" />
+	    <property name="logicNotDeleteValue" value="0" />
     </bean>
+    <!--逻辑删除  -->
+	<bean id="logicSqlInjector" class="com.baomidou.mybatisplus.mapper.LogicSqlInjector" />
 
     <!-- MyBatis 动态实现  -->
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">

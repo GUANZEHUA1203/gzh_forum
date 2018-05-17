@@ -85,7 +85,7 @@ public class AticleController extends BaseController {
 	public String geteditpage(Model model, Long atcid) {
 		Aticle selectById = this.aticleService.selectById(atcid);
 		Block block = iBlockService.selectById(selectById.getBlockId());
-		ArrayList<Long> blocks = Lists.newArrayList();
+		ArrayList<String> blocks = Lists.newArrayList();
 		model.addAttribute("aticle", selectById);
 		model.addAttribute("block",blocks.add(block.getBlId()));
 		return "/admin/aticle/aticleEdit";

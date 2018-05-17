@@ -1,8 +1,11 @@
 package com.gzeh.forum.bean;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableLogic;
+import com.baomidou.mybatisplus.annotations.KeySequence;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
@@ -21,21 +24,24 @@ import java.io.Serializable;
  * @since 2018-04-21
  */
 @TableName("tbl_block")
-public class Block extends Model<Block> {
+@KeySequence(value="SEQ_ORACLE_STRING_KEY",idClazz=String.class)
+public class Block extends Model<Block> implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
     @JsonSerialize(using=ToStringSerializer.class)
 	@TableId(value="bl_id",type=IdType.INPUT)
-	private Long blId;
+	private String blId;
 	@TableField("bl_name")
 	private String blName;
+	@JsonSerialize(using=ToStringSerializer.class)
 	@TableField("bl_parent")
-	private Long blParent;
+	private String blParent;
     /**
      * 是否删除 0：未删除 1：已删除
      */
 	@TableField("bl_isdelete")
+	@TableLogic
 	private Integer blIsdelete;
     /**
      * 创建时间
@@ -63,11 +69,11 @@ public class Block extends Model<Block> {
 		this.blIcon = blIcon;
 	}
 
-	public Long getBlId() {
+	public String getBlId() {
 		return blId;
 	}
 
-	public void setBlId(Long blId) {
+	public void setBlId(String blId) {
 		this.blId = blId;
 	}
 
@@ -79,11 +85,11 @@ public class Block extends Model<Block> {
 		this.blName = blName;
 	}
 
-	public Long getBlParent() {
+	public String getBlParent() {
 		return blParent;
 	}
 
-	public void setBlParent(Long blParent) {
+	public void setBlParent(String blParent) {
 		this.blParent = blParent;
 	}
 
