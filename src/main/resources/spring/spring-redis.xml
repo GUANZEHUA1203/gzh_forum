@@ -33,13 +33,13 @@
     <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
           p:connectionFactory-ref="jedisConnectionFactory">
         <property name="keySerializer">
-            <bean class="com.gzeh.forum.common.shiro.RedisKeySerializer"></bean>
+            <bean class="com.gzeh.forum.common.redis.RedisKeySerializer"></bean>
         </property>
         <property name="valueSerializer">
             <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
         </property>
         <property name="hashKeySerializer">
-            <bean class="com.gzeh.forum.common.shiro.RedisKeySerializer"/>
+            <bean class="com.gzeh.forum.common.redis.RedisKeySerializer"/>
         </property>
         <property name="hashValueSerializer">
             <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
@@ -69,5 +69,5 @@
     <!-- cache注解，和spring-ehcache.xml中的只能使用一个 -->
    <!--  <cache:annotation-driven cache-manager="cacheManager" proxy-target-class="true"/> -->
    
-   <bean id="redisManager" class="com.gzeh.forum.common.shiro.RedisManager"></bean>
+   <bean id="redisManager" class="com.gzeh.forum.common.redis.RedisManager"></bean>
 </beans>
