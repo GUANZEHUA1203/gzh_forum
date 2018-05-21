@@ -2,6 +2,8 @@ update user set authentication_string=password('xxxxx.') where user='root';
 flush privileges;
 
 
+
+更新模块信息
 DELIMITER $
 CREATE TRIGGER tbl_block_summary AFTER INSERT ON tbl_aticle FOR EACH ROW
 BEGIN
