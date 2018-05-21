@@ -1,4 +1,4 @@
-package com.gzeh.forum.common.shiro;
+package com.gzeh.forum.common.redids;
 
 import java.util.Set;
 
