@@ -29,6 +29,8 @@ import com.google.common.base.Splitter;
 import com.google.common.base.Strings;
 import com.gzeh.forum.bean.Account;
 import com.gzeh.forum.bean.BlockSummary;
+import com.gzeh.forum.common.SystemConfig;
+import com.gzeh.forum.common.redis.RedisManager;
 import com.gzeh.forum.common.result.PageInfo;
 import com.gzeh.forum.common.result.Result;
 import com.gzeh.forum.services.IAccountService;
@@ -63,6 +65,10 @@ public abstract class BaseController {
     
     @Autowired
     public IBlockSummaryService iBlockSummaryService;//版块
+    
+    
+    @Autowired
+	private RedisManager redisManager;
     
     
     @InitBinder
@@ -266,4 +272,16 @@ public abstract class BaseController {
 		}
 		return iBlockSummaryService.insertOrUpdate(bs);
 	}
+	
+	
+	public void dislike(){
+		Long userId = getUserId();
+		if(userId == null || userId == null){
+			logger.error("session or session id is null");
+			return;
+		}
+		
+	}
+	
+	
 }

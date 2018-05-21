@@ -146,6 +146,15 @@ public class AticleController extends BaseController {
 		return renderSuccess();
 	}
 	
+	@RequestMapping("like")
+	@ResponseBody
+	public Object likeAticle(@RequestParam(value="atid",required=true) String atid){
+		Long userId = getUserId();
+		
+		return renderSuccess();
+	}
+	
+	
 	
 	
 	
