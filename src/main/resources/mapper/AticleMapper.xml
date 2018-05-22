@@ -58,5 +58,12 @@
 		</where>
 		group by ta.at_id
 	</select>
+	
+	<insert id="batchInsert" parameterType="list">
+		insert into tbl_aticle(at_id,at_title,acount_id,at_content,block_id)
+		<foreach collection="list" item="item" index="index" separator="union all" > 
+       		(select #{item.atId},#{item.atTitle},#{item.acountId},#{item.atContent},#{item.blockId} from dual)
+    	</foreach>
+	</insert>
 
 </mapper>

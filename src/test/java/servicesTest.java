@@ -1,5 +1,6 @@
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -15,9 +16,10 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.gzeh.forum.bean.Account;
+import com.gzeh.forum.bean.Aticle;
 import com.gzeh.forum.bean.vo.AccountVo;
 import com.gzeh.forum.common.SystemConfig;
-import com.gzeh.forum.common.shiro.RedisManager;
+import com.gzeh.forum.common.redis.RedisManager;
 import com.gzeh.forum.services.IAccountService;
 import com.gzeh.forum.services.IAticleService;
 import com.gzeh.forum.services.IRoleService;
@@ -56,8 +58,17 @@ public class servicesTest {
 //    	
 //    	System.out.println(users.size());
 //    	redisManager.set(SerializeUtils.serialize(SystemConfig.DISLIKE+"123"),SerializeUtils.serialize(users));
-    	byte[] bs = redisManager.get(SerializeUtils.serialize(SystemConfig.DISLIKE+"123"));
-    	System.out.println(SerializeUtils.deserialize(bs));
+//    	byte[] bs = redisManager.get(SerializeUtils.serialize(SystemConfig.DISLIKE+"123"));
+//    	System.out.println(SerializeUtils.deserialize(bs));
+    	ArrayList<Aticle> newArrayList = Lists.newArrayList();
+    	Aticle aticle = new Aticle();
+    	for (int i = 0; i < 30000; i++) {
+    		aticle.setAtId(idGenerator.nextId());
+        	aticle.setAcountId(123564789L);
+        	aticle.setAtContent("asdf".getBytes());
+        	newArrayList.add(aticle);
+		}
+    	iAticleService.batchInsert(newArrayList);
     }
     
 	

@@ -1,5 +1,6 @@
 package com.gzeh.forum.services;
 
+import java.util.List;
 import java.util.Map;
 
 import com.baomidou.mybatisplus.plugins.Page;
@@ -23,5 +24,7 @@ public interface IAticleService extends IService<Aticle> {
 	 * @return
 	 */
 	public PageInfo pageInfoList(PageInfo  pageinfo);
+	
+	public void batchInsert(List<Aticle> aticles);
 	
 }

@@ -49,5 +49,12 @@ public class AticleServiceImpl extends ServiceImpl<AticleMapper, Aticle> impleme
         pageinfo.setTotal(page.getTotal());
 		return pageinfo;
 	}
+
+	@Override
+	public void batchInsert(List<Aticle> aticles) {
+		this.am.batchInsert(aticles);
+	}
+	
+	
 	
 }

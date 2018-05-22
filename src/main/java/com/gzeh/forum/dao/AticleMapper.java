@@ -18,4 +18,8 @@ public interface AticleMapper extends BaseMapper<Aticle> {
 	
 	List<Map<String, Object>> pageInfoAticle(Page<Map<String, Object>> pageinfo,Map<String, Object> param);
 	
+	/*
+	 * 批量添加
+	 */
+	public void batchInsert(List<Aticle> aticle);
 }

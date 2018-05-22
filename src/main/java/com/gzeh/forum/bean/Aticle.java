@@ -64,6 +64,17 @@ public class Aticle extends Model<Aticle> {
 		super();
 	}
 
+	
+	public Aticle(Long atId, String atTitle, Long acountId, byte[] atContent, Long blockId) {
+		super();
+		this.atId = atId;
+		this.atTitle = atTitle;
+		this.acountId = acountId;
+		this.atContent = atContent;
+		this.blockId = blockId;
+	}
+
+
 	public Aticle(String atTitle, Long acountId, byte[] atContent, Date atData, Long blockId) {
 		super();
 		this.atTitle = atTitle;
