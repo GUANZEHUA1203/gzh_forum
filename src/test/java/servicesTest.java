@@ -65,10 +65,8 @@ public class servicesTest {
     	for (int i = 0; i < 30000; i++) {
     		aticle.setAtId(idGenerator.nextId());
         	aticle.setAcountId(123564789L);
-        	aticle.setAtContent("asdf".getBytes());
         	newArrayList.add(aticle);
 		}
-    	iAticleService.batchInsert(newArrayList);
     }
     
 	
