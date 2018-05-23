@@ -45,7 +45,7 @@ public class Aticle extends Model<Aticle> {
      * 帖子内容
      */
 	@TableField("at_content")
-	private byte[] atContent;
+	private String atContent;
     /**
      * 发帖时间
      */
@@ -65,7 +65,7 @@ public class Aticle extends Model<Aticle> {
 	}
 
 	
-	public Aticle(Long atId, String atTitle, Long acountId, byte[] atContent, Long blockId) {
+	public Aticle(Long atId, String atTitle, Long acountId,String atContent, Long blockId) {
 		super();
 		this.atId = atId;
 		this.atTitle = atTitle;
@@ -75,7 +75,7 @@ public class Aticle extends Model<Aticle> {
 	}
 
 
-	public Aticle(String atTitle, Long acountId, byte[] atContent, Date atData, Long blockId) {
+	public Aticle(String atTitle, Long acountId, String atContent, Date atData, Long blockId) {
 		super();
 		this.atTitle = atTitle;
 		this.acountId = acountId;
@@ -108,11 +108,11 @@ public class Aticle extends Model<Aticle> {
 		this.acountId = acountId;
 	}
 
-	public byte[] getAtContent() {
+	public String getAtContent() {
 		return atContent;
 	}
 
-	public void setAtContent(byte[] atContent) {
+	public void setAtContent(String atContent) {
 		this.atContent = atContent;
 	}
 
@@ -136,5 +136,15 @@ public class Aticle extends Model<Aticle> {
 	protected Serializable pkVal() {
 		return this.atId;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Aticle [atId=" + atId + ", atTitle=" + atTitle + ", acountId=" + acountId + ", atContent=" + atContent
+				+ ", atData=" + atData + ", blockId=" + blockId + "]";
+	}
+	
+	
+	
 
 }

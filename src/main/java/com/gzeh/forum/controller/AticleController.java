@@ -68,7 +68,7 @@ public class AticleController extends BaseController {
 		Date lastTime = selectById.getLastTime();
 		//时间间隔
 		if(lastTime==null||new Date().getTime()-lastTime.getTime()>SystemConfig.ATICLE_TIME){
-			Aticle aticle = new Aticle(title,getUserId(),SerializeUtils.serialize(content),new Date(),blockLong);
+			Aticle aticle = new Aticle(title,getUserId(),content,new Date(),blockLong);
 			aticle.setAtId(idGenerator.nextId());
 			this.aticleService.insert(aticle);
 		}else{
