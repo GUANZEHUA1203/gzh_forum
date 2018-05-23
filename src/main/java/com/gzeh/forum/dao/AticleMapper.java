@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.gzeh.forum.bean.Aticle;
 
+import net.coderbee.mybatis.batch.BatchParameter;
+
 /**
  * <p>
   *  Mapper 接口
@@ -18,8 +20,4 @@ public interface AticleMapper extends BaseMapper<Aticle> {
 	
 	List<Map<String, Object>> pageInfoAticle(Page<Map<String, Object>> pageinfo,Map<String, Object> param);
 	
-	/*
-	 * 批量添加
-	 */
-	public void batchInsert(List<Aticle> aticle);
 }

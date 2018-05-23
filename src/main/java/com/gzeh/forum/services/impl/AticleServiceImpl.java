@@ -1,5 +1,6 @@
 package com.gzeh.forum.services.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,9 @@ import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.google.common.base.Function;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.gzeh.forum.bean.Aticle;
 import com.gzeh.forum.common.result.PageInfo;
 import com.gzeh.forum.dao.AticleMapper;
@@ -16,6 +20,8 @@ import com.gzeh.forum.dao.LevelMapper;
 import com.gzeh.forum.services.IAticleService;
 import com.gzeh.forum.util.BeanUtils;
 import com.gzeh.forum.util.StringUtil;
+
+import net.coderbee.mybatis.batch.BatchParameter;
 
 /**
  * <p>
@@ -50,10 +56,6 @@ public class AticleServiceImpl extends ServiceImpl<AticleMapper, Aticle> impleme
 		return pageinfo;
 	}
 
-	@Override
-	public void batchInsert(List<Aticle> aticles) {
-		this.am.batchInsert(aticles);
-	}
 	
 	
 	

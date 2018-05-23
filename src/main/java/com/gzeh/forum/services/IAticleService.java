@@ -25,6 +25,5 @@ public interface IAticleService extends IService<Aticle> {
 	 */
 	public PageInfo pageInfoList(PageInfo  pageinfo);
 	
-	public void batchInsert(List<Aticle> aticles);
 	
 }
