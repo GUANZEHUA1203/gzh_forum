@@ -76,7 +76,6 @@ public class UploadController extends BaseController {
     }*/
 
     @RequestMapping("/upload")
-    @ResponseBody
     public Object ownUpload(@RequestParam("file") CommonsMultipartFile file, HttpServletRequest request) throws IOException {
         try {
         	CommonsMultipartFile cf = (CommonsMultipartFile) file;  
