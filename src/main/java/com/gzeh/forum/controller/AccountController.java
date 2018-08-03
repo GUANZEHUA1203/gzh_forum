@@ -249,13 +249,16 @@ public class AccountController extends BaseController {
     @PostMapping(value="/account/update")
     @ResponseBody
     public Object update(@Valid AccountVo accountVo) {
-    	 List<Account> selectByLoginName = iAccountService.selectByLoginName(accountVo);
-        if (selectByLoginName != null && !selectByLoginName.isEmpty()) {
-            return renderError("登录名已存在!");
-        }
+    	Account selectById = iAccountService.selectById(accountVo.getAcId());
+    	if(!selectById.getAcLoginName().equals(accountVo.getAcLoginName())){//历史登陆名称不一致时  查询是否已有用户名
+		    List<Account> selectByLoginName = iAccountService.selectByLoginName(accountVo);
+	        if (selectByLoginName != null && !selectByLoginName.isEmpty()) {
+	            return renderError("登录名已存在!");
+	        }
+    	}
         // 更新密码
         if (StringUtils.isNotBlank(accountVo.getAcPassword())) {
-            Account user = iAccountService.selectById(accountVo.getAcId());
+            Account user = selectById;
             String salt = user.getAcSalt();
             String pwd = passwordHash.toHex(accountVo.getAcPassword(), salt);
             accountVo.setAcPassword(pwd);

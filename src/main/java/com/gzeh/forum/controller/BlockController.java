@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.druid.util.StringUtils;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.gzeh.forum.base.BaseController;
@@ -21,7 +20,6 @@ import com.gzeh.forum.bean.Block;
 import com.gzeh.forum.services.IBlockService;
 import com.gzeh.forum.util.BeanUtils;
 import com.gzeh.forum.util.IdGenerator;
-import com.gzeh.forum.util.JsonUtils;
 import com.gzeh.forum.util.Object2mapUtil;
 import com.gzeh.forum.util.StringUtil;
 
@@ -72,6 +70,34 @@ public class BlockController extends BaseController {
 		return renderSuccess();
 	}
 	
+	/*@RequestMapping("/addChild")
+	@ResponseBody
+	public Object insertBlockChild(@request  Long  blockName,String listChildName,Long managerman){
+		Block block=new Block();
+		long nextId = idGenerator.nextId();
+		block.setBlId(StringUtil.getString(nextId));
+		block.setBlName(blockName);
+		block.setBlManager(managerman);
+		block.setBlDate(new Date());
+		
+		ArrayList<Block> childList = Lists.newArrayList();
+		if(!Strings.isNullOrEmpty(listChildName)) {
+			String[] split = listChildName.split(",");
+			for (String string : split) {
+				Block blockChild = BeanUtils.copy(block, Block.class);
+				blockChild.setBlId(StringUtil.getString(blockidGenerator.nextId()));
+				blockChild.setBlName(string);
+				blockChild.setBlParent(StringUtil.getString(nextId));
+				childList.add(blockChild);
+			}
+			iBlockService.insertBatch(childList);
+		}
+		iBlockService.insert(block);
+		
+		
+		return renderSuccess();
+	}
+	*/
 	
 	@GetMapping("/editpage")
 	public Object editpage(Model model, Long blockid) {

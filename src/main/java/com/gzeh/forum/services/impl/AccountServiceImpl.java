@@ -66,7 +66,7 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
 		for (String string : split) {
 			AccountRole ar=new AccountRole();
 			ar.setAcId(acId);
-			ar.setRoId(Long.getLong(string));
+			ar.setRoId(Long.valueOf(string));
 			this.accountRoleMapper.insert(ar);
 		}
 	}

@@ -70,7 +70,7 @@ public class AticleController extends BaseController {
 		if(lastTime==null||new Date().getTime()-lastTime.getTime()>SystemConfig.ATICLE_TIME){
 			Aticle aticle = new Aticle(title,getUserId(),content,new Date(),blockLong);
 			aticle.setAtId(idGenerator.nextId());
-			this.aticleService.insert(aticle);
+			this.aticleService.insertAllColumn(aticle);
 		}else{
 			return renderError("稍后再发送帖子");
 		}
